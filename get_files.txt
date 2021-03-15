@@ -1,0 +1,17 @@
+std::vector<string> getFiles(char* folder) {
+	vector<string> files;
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir(folder)) != NULL) {
+		/* print all the files and directories within directory */
+		while ((ent = readdir(dir)) != NULL) {
+			files.push_back(ent->d_name);
+		}
+		closedir(dir);
+	}
+	else {
+		/* could not open directory */
+		perror("");
+	}
+	return files;
+}
